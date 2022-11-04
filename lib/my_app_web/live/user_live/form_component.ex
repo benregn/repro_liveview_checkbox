@@ -22,6 +22,7 @@ defmodule MyAppWeb.UserLive.FormComponent do
       >
         <.input field={{f, :name}} type="text" label="name" />
         <.input field={{f, :age}} type="number" label="age" />
+        <.input field={{f, :accept_terms_conditions}} type="checkbox" label={"Accept T&amp;C" |> raw()} />
         <:actions>
           <.button phx-disable-with="Saving...">Save User</.button>
         </:actions>
@@ -46,6 +47,8 @@ defmodule MyAppWeb.UserLive.FormComponent do
       socket.assigns.user
       |> Accounts.change_user(user_params)
       |> Map.put(:action, :validate)
+
+    IO.inspect(changeset, label: "validate changeset")
 
     {:noreply, assign(socket, :changeset, changeset)}
   end
