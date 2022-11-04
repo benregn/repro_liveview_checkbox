@@ -283,7 +283,11 @@ defmodule MyAppWeb.CoreComponents do
         name={@name}
         value="true"
         checked={@checked}
-        class="rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900"
+        class={[
+          "rounded border-zinc-300 text-zinc-900 focus:ring-zinc-900",
+          "phx-no-feedback:border-zinc-300",
+          if(@errors != [], do: "border-red-500"),
+        ]}
         {@rest}
       />
       <%= @label %>
